@@ -41,12 +41,12 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    print('Antwort-Statuscode: ${response.statusCode}');
-    print('Antwort-Body: ${response.body}');
+    print('Response Status Code: ${response.statusCode}');
+    print('Response Body: ${response.body}');
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      print('Dekodierte Daten: $data');
+      print('Decoded Data: $data');
 
       if (data['ocs']['meta']['status'] == 'ok') {
         Navigator.push(
@@ -59,8 +59,8 @@ class _LoginPageState extends State<LoginPage> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Fehler'),
-            content: Text('Ungültige Anmeldedaten.'),
+            title: Text('Error'),
+            content: Text('Invalid login credentials.'),
             actions: [
               TextButton(
                 child: Text('OK'),
@@ -74,8 +74,8 @@ class _LoginPageState extends State<LoginPage> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Fehler'),
-          content: Text('Beim Senden der Anfrage an den Server ist ein Fehler aufgetreten.'),
+          title: Text('Error'),
+          content: Text('An error occurred while sending the request to the server.'),
           actions: [
             TextButton(
               child: Text('OK'),
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nextcloud-Anmeldung'),
+        title: Text('Nextcloud Login'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -101,21 +101,21 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
-                labelText: 'Benutzername',
+                labelText: 'Username',
               ),
             ),
             SizedBox(height: 16.0),
             TextField(
               controller: _passwordController,
               decoration: InputDecoration(
-                labelText: 'Passwort',
+                labelText: 'Password',
               ),
               obscureText: true,
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _login,
-              child: const Text('Anmelden'),
+              child: const Text('Login'),
             ),
           ],
         ),
@@ -130,8 +130,8 @@ class TalkPage extends StatelessWidget {
   TalkPage({required this.loginUrl});
 
   void _startNextcloudTalk() {
-    // Öffne Nextcloud Talk in einem WebView oder verwende eine andere Methode, um die Talk-Funktionalität anzuzeigen
-    // Beispiel: LaunchUrl.launch('${loginUrl}/apps/talk');
+    // Open Nextcloud Talk in a web view or use another method to display the Talk functionality
+    // Example: LaunchUrl.launch('${loginUrl}/apps/talk');
   }
 
   @override
@@ -143,7 +143,7 @@ class TalkPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: _startNextcloudTalk,
-          child: const Text('Nextcloud Talk öffnen'),
+          child: const Text('Open Nextcloud Talk'),
         ),
       ),
     );
